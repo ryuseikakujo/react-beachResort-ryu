@@ -27,7 +27,8 @@ class RoomProvider extends Component {
       let response = await Client.getEntries({
         content_type: "beachResort",
         // order: "sys.createdAt"
-        order: "-fields.price"
+        // order: "-fields.price"
+        order: "fields.price"
       })
       let rooms = this.formatData(response.items)
       let featuredRooms = rooms.filter(room => room.featured === true)
@@ -98,14 +99,14 @@ class RoomProvider extends Component {
     let tempRooms = [...rooms]
     capacity = parseInt(capacity)
     price = parseInt(price)
-    if (type != 'all') {
+    if (type !== 'all') {
       tempRooms = tempRooms.filter(room => room.type === type)
     }
     if (capacity !== 1) {
       tempRooms = tempRooms.filter(room => room.capacity >= capacity)
     }
     tempRooms = tempRooms.filter(room => room.price <= price)
-    tempRooms = tempRooms.filter(room => room.size >= minSize && rooms.size <= maxSize)
+    tempRooms = tempRooms.filter(room => room.size >= minSize && room.size <= maxSize)
     if (breakfast) {
       tempRooms = tempRooms.filter(room => room.breakfast === true)
     }

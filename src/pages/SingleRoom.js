@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import defaultBcg from '../images/room-1.jpeg'
-import Hero from '../components/Hero'
+// import Hero from '../components/Hero'
 import Banner from '../components/Banner'
 import {Link} from 'react-router-dom'
 import {RoomContext} from '../context'
@@ -62,9 +62,17 @@ export default class SingleRoom extends Component {
                 }
               </h6>
               <h6>{pets ? "pets allowed" : "no pets allowed"}</h6>
-              
+              <h6>{breakfast && "free breakfast included"}</h6>
             </article>
           </div>
+        </section>
+        <section className="room-extras">
+          <h6>extras</h6>
+          <ul className="extras">
+            {extras.map((item, index) => (
+              <li key={index}>- {item}</li>
+            ))}
+          </ul>
         </section>
       </>
     )
